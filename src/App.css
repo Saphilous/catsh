@@ -1,38 +1,66 @@
-.App {
+.App-container {
+  background-color: #202020;
+  border-radius: 30px;
+  height: 518px;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  margin-top: 5%;
 }
 
-.App-link {
-  color: #61dafb;
+.App-title {
+  letter-spacing: 0;
+  line-height: 120px;
+  min-height: 184px;
+  min-width: 340px;
+  white-space: nowrap;
+  color: #FF8B8B;
+  font-size: 7.5rem;
+  padding-top: 2%;
+  margin: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-bottom {
+  display: flex;
+  padding-top: 2%;
+}
+
+.App-cat {
+  height: 502px;
+  width: 502px;
+  background-image: url("./assets/pngtreeblackCatWithBigEyes5418226.png");
+  background-size: cover;
+  background-position: center;
+}
+.App-Ellipse
+{
+  text-align: center;
+  border-radius: 50%;
+  height: 500px;
+  width: 500px;
+  background-image: radial-gradient(rgb(55, 165, 255), rgb(19, 82, 255));
+}
+
+.App-Ellipse-Disc
+{
+  padding-top: 35%;
+  padding-bottom: 35%;
+  font-size: 3rem;
+}
+
+.Spinning {
+  position: absolute;
+  animation: spin 2000ms linear infinite, moveLeftToRight 5s linear;
+}
+
+.Spinning:out-of-range {
+  display: none;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes moveLeftToRight {
+  0% {left: 40%;}
+  100% {left: 100%;}
 }

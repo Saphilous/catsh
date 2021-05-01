@@ -1,13 +1,8 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Jokerman;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #444444;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@font-face {font-family: Jokerman; src: url("//db.onlinewebfonts.com/t/54b9af0b935475d59a4bc1f6cdad764b.eot"); src: url("//db.onlinewebfonts.com/t/54b9af0b935475d59a4bc1f6cdad764b.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/54b9af0b935475d59a4bc1f6cdad764b.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/54b9af0b935475d59a4bc1f6cdad764b.woff") format("woff"), url("//db.onlinewebfonts.com/t/54b9af0b935475d59a4bc1f6cdad764b.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/54b9af0b935475d59a4bc1f6cdad764b.svg#Jokerman") format("svg"); } 

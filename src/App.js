@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+
+  const [ellipseclass, setellipseclass] = useState("App-Ellipse")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className='App'>
+      <div className='App-container'>
+        <p className='App-title'>
+          Catsh
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1 className="text-1 jokerman-regular-normal-white-40px">Welcome to Catsh, An Interactive diary writer</h1>
+        <h1 className="text-1 jokerman-regular-normal-white-40px">If you&#39;re too cool to write a dairy like a normie,<br />
+        this application is for you
+        </h1>
+      </div>
+      <div className = "App-bottom">
+        <div className="App-cat" alt ="Cute Smiling Catsh">
+
+        </div>
+        <div className= {ellipseclass} onClick = {() => {setellipseclass("App-Ellipse Spinning")}}>
+          <p className="App-Ellipse-Disc">
+            Get Started
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
