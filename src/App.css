@@ -22,6 +22,7 @@
 .App-bottom {
   display: flex;
   padding-top: 2%;
+  justify-content: space-between;
 }
 
 .App-cat {
@@ -35,25 +36,34 @@
 {
   text-align: center;
   border-radius: 50%;
-  height: 500px;
-  width: 500px;
+  height: 300px;
+  width: 300px;
   background-image: radial-gradient(rgb(55, 165, 255), rgb(19, 82, 255));
+  margin-top: 10%;
 }
 
 .App-Ellipse-Disc
 {
-  padding-top: 35%;
-  padding-bottom: 35%;
+  padding-top: 25%;
+  padding-bottom: 25%;
   font-size: 3rem;
 }
 
 .Spinning {
   position: absolute;
-  animation: spin 2000ms linear infinite, moveLeftToRight 5s linear;
+  animation: moveLeftToRight 8s linear, bounce 2s linear 3;
 }
 
-.Spinning:out-of-range {
+.Hidden {
   display: none;
+}
+
+.Burst {
+  animation: spin 3s linear infinite, burst 1s linear;
+}
+
+.second {
+  font-size: 2rem;
 }
 
 @keyframes spin {
@@ -63,4 +73,17 @@
 @keyframes moveLeftToRight {
   0% {left: 40%;}
   100% {left: 100%;}
+}
+@keyframes bounce {
+  0%   { transform: scale(1,1)    translateY(0); }
+  10%  { transform: scale(1.1,.9) translateY(0); }
+  30%  { transform: scale(.9,1.1) translateY(-50%); }
+  50%  { transform: scale(1.05,0.95)    translateY(0); }
+  57%  { transform: scale(1,1)    translateY(-17px); }
+  64%  { transform: scale(1,1)    translateY(0); }
+  100% { transform: scale(1,1)    translateY(0); }
+}
+@keyframes burst {
+  0% {transform: scale(1, 1) rotate(0deg);}
+  100% {transform: scale(0,0) rotate(360deg);}
 }

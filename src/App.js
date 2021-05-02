@@ -4,6 +4,7 @@ import './App.css';
 function App() {
 
   const [ellipseclass, setellipseclass] = useState("App-Ellipse")
+  const [ellipseburstclass, setllipseburstclass] = useState("App-Ellipse")
 
   return (
     <div className='App'>
@@ -20,9 +21,15 @@ function App() {
         <div className="App-cat" alt ="Cute Smiling Catsh">
 
         </div>
-        <div className= {ellipseclass} onClick = {() => {setellipseclass("App-Ellipse Spinning")}}>
+        <div className= {ellipseclass} onClick = {() => {setellipseclass("App-Ellipse Spinning")}} onAnimationStart = {() => {setllipseburstclass("App-Ellipse Burst")}} onAnimationEnd = {() => {setellipseclass("App-Ellipse Hidden")}}>
           <p className="App-Ellipse-Disc">
             Get Started
+          </p>
+        </div>
+        <div className= {ellipseburstclass} onAnimationEnd = {() => {setllipseburstclass("App-Ellipse Hidden")}}>
+          <p className="App-Ellipse-Disc second">
+            Created By: <br/>
+            Saphilous
           </p>
         </div>
       </div>
