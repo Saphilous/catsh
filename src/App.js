@@ -5,6 +5,7 @@ function App() {
 
   const [ellipseclass, setellipseclass] = useState("App-Ellipse")
   const [ellipseburstclass, setllipseburstclass] = useState("App-Ellipse")
+  const [formclass, setformclass] = useState("App-Form")
 
   return (
     <div className='App'>
@@ -21,7 +22,9 @@ function App() {
         <div className="App-cat" alt ="Cute Smiling Catsh">
 
         </div>
-        <div className= {ellipseclass} onClick = {() => {setellipseclass("App-Ellipse Spinning")}} onAnimationStart = {() => {setllipseburstclass("App-Ellipse Burst")}} onAnimationEnd = {() => {setellipseclass("App-Ellipse Hidden")}}>
+        <div className= {ellipseclass} onClick = {() => {setellipseclass("App-Ellipse Spinning")}}
+        onAnimationStart = {() => {setllipseburstclass("App-Ellipse Burst")}}
+        onAnimationEnd = {() => {setellipseclass("App-Ellipse Hidden"); setformclass("App-Form Visible")}}>
           <p className="App-Ellipse-Disc">
             Get Started
           </p>
@@ -31,6 +34,19 @@ function App() {
             Created By: <br/>
             Saphilous
           </p>
+        </div>
+        <div className = {formclass}>
+          <form>
+            <label className ="App-label">
+              Username:
+            </label>
+            <input type = 'text' placeholder = 'Please Enter Your name'/> <br />
+            <label className ="App-label">
+              Password:
+            </label>
+            <input type = 'password' placeholder = 'Enter your password' />
+            <button className = 'App-btn'> Submit </button>
+          </form>
         </div>
       </div>
     </div>
