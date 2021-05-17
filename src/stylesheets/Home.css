@@ -28,7 +28,7 @@
 .App-cat {
   height: 502px;
   width: 502px;
-  background-image: url("./assets/pngtreeblackCatWithBigEyes5418226.png");
+  background-image: url("../assets/pngtreeblackCatWithBigEyes5418226.png");
   background-size: cover;
   background-position: center;
 }
@@ -40,6 +40,10 @@
   width: 300px;
   background-image: radial-gradient(rgb(55, 165, 255), rgb(19, 82, 255));
   margin-top: 10%;
+}
+
+.App-Ellipse:hover{
+  cursor: pointer;
 }
 
 .App-Ellipse-Disc
@@ -68,6 +72,10 @@
 
 .second {
   font-size: 2rem;
+}
+
+.second:hover{
+  cursor: auto;
 }
 
 .App-Form
@@ -107,20 +115,9 @@ input:focus {
   margin-bottom: 3%;
 }
 
-.App-btn {
-  font-size: 1.25rem;
-  border-radius: 50px;
-  padding: 2%;
-  padding-left: 7%;
-  padding-right: 7%;
-  background-image: linear-gradient(to left, rgb(100, 185, 255), rgb(133, 57, 255));
-  border: 0px;
-  font-family: inherit;
-}
 
-.App-btn:hover {
-  cursor: pointer;
-}
+
+
 
 @keyframes spin {
   from { transform: rotate(0deg); }

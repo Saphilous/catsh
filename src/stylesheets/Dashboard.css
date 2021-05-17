@@ -1,0 +1,29 @@
+.Dash-container
+{
+    padding-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.Dash-card
+{
+    margin: 3%;
+}
+.Dash-Card-Add
+{
+    width: 400px;
+    text-align: center;
+    margin: 3%;
+    background-image: linear-gradient(to bottom, rgb(255, 0, 132),rgb(190, 104, 185), rgb(0, 75, 224));
+    transition: all 0.4s ease-in-out;
+}
+.Dash-Card-Add:hover
+{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.Dash-Icon
+{
+    margin: 55% 40% 50% 40%;
+    font-size: 5rem !important;
+    border-radius: 25%;
+}

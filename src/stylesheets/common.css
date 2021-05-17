@@ -1,0 +1,26 @@
+.App-btn
+{
+    font-size: 1.25rem;
+    border-radius: 50px;
+    padding: 2%;
+    padding-left: 7%;
+    padding-right: 7%;
+    background-image: linear-gradient(to left, rgb(100, 185, 255), rgb(133, 57, 255));
+    border: 0px;
+    font-family: inherit;
+}
+
+.App-btn:hover
+{
+    cursor: pointer;
+}
+
+.primary
+{
+    margin: 3%;
+    padding: 0.5%;
+    padding-left: 7%;
+    padding-right: 7%;
+    background-image: linear-gradient(to left, rgb(100, 255, 126), rgb(5, 151, 0));
+
+}

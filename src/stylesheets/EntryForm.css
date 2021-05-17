@@ -1,0 +1,73 @@
+.form-div
+{
+    margin: 5%;
+    color: white;
+    background-image: radial-gradient(rgb(108, 29, 255), rgb(27, 145, 255) );
+    padding: 2%;
+    border-radius: 25px;
+}
+.form-title
+{
+    text-align: center;
+    margin-bottom: 7%;
+}
+.MuiInput-underline:before
+{
+    border-bottom: 1px solid rgba(255,255,255, 0.8) !important;
+    margin-bottom: auto;
+}
+.MuiFormLabel-root
+{
+    color: rgba(255,255,255, 0.8) !important;
+}
+.form-div input
+{
+    color: rgba(255,255,255, 0.8);
+    font-size: large;   
+    
+}
+.MuiInputBase-input
+{
+    color: rgba(255,255,255, 0.8) !important;
+}
+.form-elem
+{
+    margin-bottom: 5%;
+}
+.MuiFormControl-root
+{
+    width: 50%;
+}
+.MuiOutlinedInput-notchedOutline
+{
+    border-color: white !important;
+}
+.form-img-div
+{
+    background-color: #202020;
+    height: 200px;
+    width: 40%;
+    text-align: center;
+    color: #5AB6FE;
+    border-radius: 25px;
+    margin: 0px auto;
+}
+.form-img-div:hover
+{
+    cursor: pointer;
+}
+.form-img
+{
+    height: 150px;
+    width: fit-content;
+}
+.form-img:hover
+{
+    cursor: pointer;
+}
+.form-add
+{
+    font-size: 4rem !important;
+    text-align: center;
+    margin-top: 10%;
+}
