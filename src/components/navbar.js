@@ -43,7 +43,7 @@ const slidebarData = [
 
 const Navcomponent = (props) =>
 {
-	let [width, height]=useWindowSize()
+	let [width]=useWindowSize()
 	const [sidebar, setSidebar]=useState(false)
 	const showSidebar = () => setSidebar(!sidebar)
 

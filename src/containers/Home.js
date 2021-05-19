@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import AppID from 'ibmcloud-appid-js'
+import {useHistory} from 'react-router-dom'
+import AppID from 'ibmcloud-appid-js';
+import config from '../configurations/authconfig.json'
 import '../stylesheets/Home.css'
+
 
 function Home() 
 {
+  var history = useHistory()
+    const appID = React.useMemo(() => {
+      return new AppID()
+    }, []);
+    (async () => {
+      try {
+        await appID.init({
+            clientId: "7d53d0be-4b73-4949-82ac-b6c1524832d5",
+            discoveryEndpoint: "https://us-south.appid.cloud.ibm.com/oauth/v4/b7627068-8442-4f23-9876-fd6e7e6309e8/.well-known/openid-configuration",
+        });
+      } catch (e) {
+        console.log(e)
+      }
+    })();
+  
     const [ellipseclass, setellipseclass] = useState("App-Ellipse")
     const [ellipseburstclass, setllipseburstclass] = useState("App-Ellipse")
     const [formclass, setformclass] = useState("App-Form")
-    const [appID, setappID] = useState()
+    const [username, setUserName] = useState()
 
-    useEffect(() => {
-      //const appID = new AppID();
-      //appID.init({
-        //clientId: '2152d541-0b00-4e61-9b45-de488f70112f',
-        //discoveryEndpoint: 'https://us-south.appid.cloud.ibm.com/oauth/v4/b7627068-8442-4f23-9876-fd6e7e6309e8/.well-known/openid-configuration'
-      //});
-      //setappID(appID)
-    })
-    const signinhandler = (event) => {
+    const signinhandler = async (event) => {
       event.preventDefault()
-      const tokens = appID.signin();
-    }
+      try {
+        const tokens = await appID.signin();
+        let userInfo = await appID.getUserInfo(tokens.accessToken);
+        const userinfotextcontent = JSON.stringify(userInfo)
+        setUserName(userinfotextcontent)
+        console.log(userinfotextcontent)
+        history.push('/dashboard')
+      } catch (e) {
+        console.log(e)
+      }
+    };
 
     return (
         <React.Fragment>
@@ -60,7 +79,7 @@ function Home()
                 Password:
               </label>
               <input type = 'password' placeholder = 'Enter your password' />
-              <button className = 'App-btn' onClick={signinhandler}> Submit </button>
+              <button className = 'App-btn' id='loginbtn' onClick= {signinhandler}> Submit </button>
             </form>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import './configurations/firebase'
 import Navbar from './containers/Navbar';
@@ -16,9 +16,6 @@ function App() {
  }else {
     firebase.app();
  }
-  const [ellipseclass, setellipseclass] = useState("App-Ellipse")
-  const [ellipseburstclass, setllipseburstclass] = useState("App-Ellipse")
-  const [formclass, setformclass] = useState("App-Form")
 
   return (
     <BrowserRouter>

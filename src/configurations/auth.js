@@ -1,8 +1,0 @@
-import AppID from 'ibmcloud-appid-js'
-const appID = new AppID();
-appID.init({
- clientId: '2152d541-0b00-4e61-9b45-de488f70112f',
- discoveryEndpoint: 'https://us-south.appid.cloud.ibm.com/oauth/v4/b7627068-8442-4f23-9876-fd6e7e6309e8/.well-known/openid-configuration'
-});
-
-export default appID

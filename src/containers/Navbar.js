@@ -1,4 +1,4 @@
-import React, {Component, Container} from 'react'
+import React, {Component} from 'react'
 
 //import components here
 import Navcomponent from '../components/navbar'

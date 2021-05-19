@@ -30,8 +30,6 @@ function EntryForm()
 
     const changehandler = (event) => {
         event.persist()
-        const value = event.target.value
-        const name = event.target.name
         setformvals(formvals => ({...formvals, [event.target.name]: event.target.value}))
         console.log(formvals)
     }
