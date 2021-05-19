@@ -9,6 +9,7 @@ import firebaseconfig from './configurations/firebase'
 import firebase from "firebase/app";
 import './stylesheets/common.css'
 
+
 function App() {
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseconfig);
