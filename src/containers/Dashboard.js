@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useHistory} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -11,6 +11,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import '../stylesheets/Dashboard.css'
+import Axios from 'axios'
+import AuthContext from '../store/authContext'
+
+const newInstance = Axios.create({
+    baseURL: 'https://us-south.appid.cloud.ibm.com'
+})
 
 const useStyles = makeStyles({
 
@@ -45,9 +51,10 @@ const useStyles = makeStyles({
       },
 })
 
-function Dashboard() 
+function Dashboard(props) 
 {
     let history = useHistory()
+    let authcontext = useContext(AuthContext)
     const newentryadder = () => {
         history.push('/dashboard/entryform/')
     }
@@ -96,12 +103,17 @@ function Dashboard()
     })
 
     return(
-        <div className='Dash-container'>
-            <div className='Dash-Card-Add' onClick = {newentryadder}>
-                <AddTwoToneIcon className = "Dash-Icon"/>
+        <React.Fragment>
+            <div className='Dash-Head'>
+            {authcontext.userinfo? <h1>Welcome {authcontext.userinfo}</h1>: <h1>Welcome to your AI-Powered Diary</h1>}
             </div>
-            {entriesmapped}
-        </div>
+            <div className='Dash-container'>
+                <div className='Dash-Card-Add' onClick = {newentryadder}>
+                    <AddTwoToneIcon className = "Dash-Icon"/>
+                </div>
+                {entriesmapped}
+            </div>
+        </React.Fragment>
     )    
 }
 

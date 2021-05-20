@@ -7,6 +7,7 @@ import Dashboard from './containers/Dashboard';
 import EntryForm from './containers/EntryForm';
 import firebaseconfig from './configurations/firebase'
 import firebase from "firebase/app";
+import authHoc from "./HOC/authhoc";
 import './stylesheets/common.css'
 
 
@@ -23,8 +24,8 @@ function App() {
       <Navbar />
       <Switch>
         <Route path='/' component={Home} exact/>
-        <Route path='/dashboard' component={Dashboard} exact />
-        <Route path='/dashboard/entryform' component={EntryForm} exact />
+        <Route path='/dashboard' component={authHoc(Dashboard)} exact />
+        <Route path='/dashboard/entryform' component={authHoc(EntryForm)} exact />
       </Switch>
       </div>
     </BrowserRouter>

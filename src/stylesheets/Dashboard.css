@@ -1,6 +1,6 @@
 .Dash-container
 {
-    padding-top: 5%;
+    padding-top: 3%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -26,4 +26,10 @@
     margin: 55% 40% 50% 40%;
     font-size: 5rem !important;
     border-radius: 25%;
+}
+.Dash-Head
+{
+    margin-top: 5%;
+    text-align: center;
+    color: rgb(0, 207, 207);
 }

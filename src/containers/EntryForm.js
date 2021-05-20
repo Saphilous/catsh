@@ -20,7 +20,7 @@ const classes = makeStyles((theme) => ({
     })
 );
 
-function EntryForm()
+function EntryForm(props)
 {
     var history = useHistory()
     var storageref = firebase.storage().ref()

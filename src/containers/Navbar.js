@@ -4,16 +4,14 @@ import React, {Component} from 'react'
 import Navcomponent from '../components/navbar'
 import '../stylesheets/Navbar.css'
 
-class Navbar extends Component
+function Navbar(props)
 {
-	render()
-	{
-		return(
-			<div className= 'Nav-Div-Main'>
-				<Navcomponent />
-			</div>
-		)
-	}
+	return(
+		<div className= 'Nav-Div-Main'>
+			<Navcomponent userinfo = {props.userinfo}/>
+		</div>
+	)
 }
+
 
 export default Navbar

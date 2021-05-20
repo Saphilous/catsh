@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Link, NavLink} from 'react-router-dom'
 
 import '../stylesheets/Navbar.css'
 import {FaBars} from "react-icons/fa"
 import {AiOutlineClose} from "react-icons/ai";
+import AuthContext from '../store/authContext'
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
@@ -46,6 +47,7 @@ const Navcomponent = (props) =>
 	let [width]=useWindowSize()
 	const [sidebar, setSidebar]=useState(false)
 	const showSidebar = () => setSidebar(!sidebar)
+	const authContext = useContext(AuthContext)
 
 	if(width > 720)
 	{
@@ -60,9 +62,11 @@ const Navcomponent = (props) =>
 			<NavLink to='/about' className='Nav-li' activeClassName='selected' exact>
 				About Us
 			</NavLink>
-			<NavLink to='/signup' className='Nav-li' activeClassName='selected' exact>
-				Sign Up
-			</NavLink>
+			{authContext.isLoggedIn?<NavLink to='/Logout' className='Nav-li' activeClassName='selected' exact>
+				Logout
+			</NavLink>: <NavLink to='/signup' className='Nav-li' activeClassName='selected' exact>
+				Sign In
+			</NavLink>}
 		</ul>
 		)
 	}

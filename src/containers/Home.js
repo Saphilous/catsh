@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {useHistory} from 'react-router-dom'
 import AppID from 'ibmcloud-appid-js';
 import config from '../configurations/authconfig.json'
 import '../stylesheets/Home.css'
+import AuthContext from '../store/authContext'
 
 
 function Home() 
 {
   var history = useHistory()
+  const authcontext = useContext(AuthContext)
     const appID = React.useMemo(() => {
       return new AppID()
     }, []);
@@ -32,9 +34,14 @@ function Home()
       try {
         const tokens = await appID.signin();
         let userInfo = await appID.getUserInfo(tokens.accessToken);
+        console.log(tokens)
+        console.log(userInfo)
         const userinfotextcontent = JSON.stringify(userInfo)
         setUserName(userinfotextcontent)
         console.log(userinfotextcontent)
+        document.cookie = `atn= ${tokens.accessToken}; path= /`
+        authcontext.login()
+        authcontext.userinfofunc(userInfo.name)
         history.push('/dashboard')
       } catch (e) {
         console.log(e)
