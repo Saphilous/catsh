@@ -27,19 +27,16 @@ function Home()
     const [ellipseclass, setellipseclass] = useState("App-Ellipse")
     const [ellipseburstclass, setllipseburstclass] = useState("App-Ellipse")
     const [formclass, setformclass] = useState("App-Form")
-    const [username, setUserName] = useState()
 
     const signinhandler = async (event) => {
       event.preventDefault()
       try {
         const tokens = await appID.signin();
         let userInfo = await appID.getUserInfo(tokens.accessToken);
-        console.log(tokens)
         console.log(userInfo)
-        const userinfotextcontent = JSON.stringify(userInfo)
-        setUserName(userinfotextcontent)
-        console.log(userinfotextcontent)
+        const userid = userInfo.identities[0].id
         document.cookie = `atn= ${tokens.accessToken}; path= /`
+        document.cookie = `atn= ${userid}; path = /`
         authcontext.login()
         authcontext.userinfofunc(userInfo.name)
         history.push('/dashboard')
