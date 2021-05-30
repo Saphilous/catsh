@@ -12,7 +12,7 @@ function Authhoc(ComptoProtect)
             loading: true,
             redirect: false,
             loggedin: false,
-            userinfo: {}
+            userid: null
         }
 
        async componentDidMount()
@@ -30,9 +30,11 @@ function Authhoc(ComptoProtect)
             const atncookieval = atncookie.split("=")[1]
             try
             {
-                appID.getUserInfo(atncookieval).then(res => {
+                await appID.getUserInfo(atncookieval).then(res => {
                     console.log(res)
-                    this.setState({loading: false, loggedin: true, userinfo: res})
+                    const userid = res.identities[0].id
+                    sessionStorage.setItem("uid", userid)
+                    this.setState({loading: false, loggedin: true, userid: userid})
                 }).catch(err => {
                     console.log(err)
                     this.setState({loading: false, redirect: true, loggedin: false})

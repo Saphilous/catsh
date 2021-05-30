@@ -8,6 +8,7 @@ import AuthContext from '../store/authContext'
 
 function useWindowSize() {
   const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
+
   useEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
@@ -27,7 +28,7 @@ const slidebarData = [
     },
     {
         title: 'Dashboard',
-        path: '/dashboard',
+        path: `/dashboard/`,
         cNAme: 'nav-text'
     },
     {
@@ -45,10 +46,15 @@ const slidebarData = [
 const Navcomponent = (props) =>
 {
 	let [width]=useWindowSize()
+	const [cookies, setcookies] = useState()
 	const [sidebar, setSidebar]=useState(false)
 	const showSidebar = () => setSidebar(!sidebar)
 	const authContext = useContext(AuthContext)
-
+	useEffect(() => {
+		const uid = sessionStorage.getItem("uid")
+		setcookies(uid)
+	})
+	const dashboardlink = '/dashboard?uid='.concat(cookies)
 	if(width > 720)
 	{
 		return(
@@ -56,7 +62,7 @@ const Navcomponent = (props) =>
 			<NavLink to='/' className='Nav-li' activeClassName='selected' exact>
 				Catsh
 			</NavLink>
-			<NavLink to='/dashboard' className='Nav-li' activeClassName='selected' exact>
+			<NavLink to= {dashboardlink} className='Nav-li' activeClassName='selected' exact>
 				Dashboard
 			</NavLink>
 			<NavLink to='/about' className='Nav-li' activeClassName='selected' exact>
@@ -73,7 +79,7 @@ const Navcomponent = (props) =>
 	else
 	{
 		return(
-			<>
+			<React.Fragment>
 				<div className='nav-toggle-main'>
 					<Link to='#' className='toggle-menu-bars'>
 						<FaBars onClick={showSidebar} />
@@ -98,7 +104,7 @@ const Navcomponent = (props) =>
 						})}
 					</ul>
 				</nav>
-			</>
+			</React.Fragment>
 		)
 	}	
 }

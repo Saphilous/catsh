@@ -42,14 +42,18 @@ function EntryForm(props)
 
     const clickhandler = (event) =>
     {
+        const urlfin = window.location.search
+        const urlparams = new URLSearchParams(urlfin)
+        const uid = urlparams.get('uid')
+        console.log(uid)
         event.preventDefault()
-        const basename = 'userimages/'
+        const basename = `userimages/${uid}/`
         const childname = basename.concat(filename)
         var storyref = storageref.child(childname)
         var metadata = {
             name: filename
         }
-        const newentry = {...formvals, imgname: filename, docid: 'userid: user1'}
+        const newentry = {...formvals, imgname: filename, docid: `${urlparams.get('uid')}`}
         console.log(newentry)
         storyref.put(inpfile, metadata).then((snapshot) => {
             console.log('Image is uploaded succesfully!');
@@ -57,7 +61,7 @@ function EntryForm(props)
                 console.log(res.data)
                 setinpfile(null)
                 setfilename("Add an Image")
-                history.push("/dashboard")
+                history.push(`/dashboard?uid=${uid}`)
             }).catch(err => {
                 console.log(err)
             })

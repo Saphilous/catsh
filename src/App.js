@@ -24,7 +24,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path='/' component={Home} exact/>
-        <Route path='/dashboard/:id' component={authHoc(Dashboard)} exact />
+        <Route path='/dashboard/' component={authHoc(Dashboard)} exact />
         <Route path='/dashboard/entryform' component={authHoc(EntryForm)} exact />
       </Switch>
       </div>

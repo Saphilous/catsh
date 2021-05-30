@@ -36,10 +36,10 @@ function Home()
         console.log(userInfo)
         const userid = userInfo.identities[0].id
         document.cookie = `atn= ${tokens.accessToken}; path= /`
-        document.cookie = `atn= ${userid}; path = /`
+        console.log(userid)
         authcontext.login()
         authcontext.userinfofunc(userInfo.name)
-        history.push('/dashboard')
+        history.push(`/dashboard?uid=${userid}`)
       } catch (e) {
         console.log(e)
       }
