@@ -1,0 +1,31 @@
+.Ent-wrapper
+{
+    color: white;
+    display: flex;
+}
+.Ent-Text
+{
+    width: 45%;
+    height: 90vh;
+    overflow-y: scroll;
+    padding-top: 5%;
+    padding-left: 3%;
+    background-image: linear-gradient(to left, #5271ff, #8c52ff);
+}
+.Ent-Head
+{
+    text-align: center;
+    color: black;
+}
+.Ent-p
+{
+    font-size: 1.5rem;
+}
+.Ent-Img
+{
+    background-image: url();
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
