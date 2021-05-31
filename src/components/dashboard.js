@@ -1,4 +1,5 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -48,8 +49,10 @@ function DashComponent(props)
 {
     const classes = useStyles()
     var storageref = firebase.storage().ref()
+    const history = useHistory()
     const urlfin = window.location.search
     const urlparams = new URLSearchParams(urlfin)
+    const userid = sessionStorage.getItem("uid")
     let entriesmapped = null
     if(props.entries)
     {
@@ -62,10 +65,13 @@ function DashComponent(props)
                 console.log(url)
                 document.getElementById(res.id).setAttribute("src", url)
             })
+            const clicked = () => {
+                history.push(`/dashboard/entry?uid=${userid}&eid=${res.id}`)
+            }
             return(
                 <div className="Dash-card">
                    <Card className={classes.root}>
-                        <CardActionArea>
+                        <CardActionArea onClick={clicked} name = {res.id} value={res.id}>
                             <CardMedia
                             component="img"
                             id = {res.id}
@@ -91,8 +97,8 @@ function DashComponent(props)
                             <Button size="small" color="primary">
                             Share
                             </Button>
-                            <Button size="small" color="primary">
-                            Learn More
+                            <Button size="small" color="primary" name = {res.id} onClick={clicked} value={res.id}>
+                            Read More
                             </Button>
                         </CardActions>
                     </Card>
