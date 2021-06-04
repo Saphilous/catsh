@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import firebase from "firebase/app";
 import "firebase/storage";
 import styled from 'styled-components'
-const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
-const { IamAuthenticator } = require('ibm-watson/auth');
+import axios from 'axios';
 
 
 const Div = styled.div `
@@ -17,18 +16,29 @@ background-size: cover;
 background-repeat: no-repeat;
 `
 
+const instance = axios.create({
+    baseURL: "https://18d20caa.us-south.apigw.appdomain.cloud/catsh-text-analyze"
+})
+
 function EntryComponent(props)
 {
     const [imgurl, setimgurl] = useState()
-
-    const naturallanguageunderstanding = new NaturalLanguageUnderstandingV1({
-        version: '2020-08-01',
-        authenticator: new IamAuthenticator({
-            apikey: 'UNL1ShV-c2bAwfGGyqQFjE-qVOOE-yPskbDybk8CWro0',
-        }),
-        serviceUrl: 'https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/1bcae669-efa9-4160-9535-18d3807000a3',
-    })
-    console.log(naturallanguageunderstanding)
+    const [results, setresults] = useState(null)
+    useEffect(async () => {
+        if(props.entry)
+        {
+            const details = props.entry
+            const analtexts = details.entry
+            var analyzsisresults
+                await instance.get(`/analyzetext`, {"analtexts": analtexts}).then(res => {
+                    analyzsisresults = res.data.result
+                    setresults(analyzsisresults)
+                }).catch(err => {
+                    console.log(err)
+                }
+            )
+        }
+    }, [props.entry])
 
     var storageref = firebase.storage().ref()
 
@@ -46,33 +56,7 @@ function EntryComponent(props)
                 setimgurl(url)
             })
 
-        const analyzeparams = {
-            'text': details.entry,
-            'features': {
-                'entities': {
-                    'emotion': true,
-                    'sentiment': true,
-                    'mentions': true,
-                    'limit': 10
-                },
-                'keywords': {
-                    'emotion': true,
-                    'sentiment': true,
-                    'limit': 3
-                },
-                'summarization': {
-                    'limit': 5
-                }
-            }
-        }
 
-        naturallanguageunderstanding.analyze(analyzeparams).then(res => {
-            console.log(res)
-        }).catch(err => {
-            console.log(err)
-        })
-
-        console.log(props.entry)
         return (
             <div className='Ent-wrapper'>
                 <div className='Ent-Text'>
@@ -85,6 +69,11 @@ function EntryComponent(props)
                     <p className='Ent-p'>
                         {details.entry}
                     </p>
+                </div>
+                <div className='Ent-Text'>
+                    <h1>
+                       Confidence Score:  {results? results.entities[0].confidence: "no resulrs"}
+                    </h1>
                 </div>
             </div>
         )
