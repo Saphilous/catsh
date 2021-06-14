@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import firebase from "firebase/app";
 import "firebase/storage";
 import styled from 'styled-components'
+import { ResponsivePie } from '@nivo/pie'
 import axios from 'axios';
 
 
@@ -56,6 +57,21 @@ function EntryComponent(props)
                 setimgurl(url)
             })
 
+            const confidencesetter = () => {
+                let confidence
+                if(results)
+                {
+                    console.log(results)
+                    confidence = results.entities[0].confidence
+                }
+                return confidence
+            }
+
+            if(results)
+            {
+                console.log(results)
+            }
+
 
         return (
             <div className='Ent-wrapper'>
@@ -70,11 +86,132 @@ function EntryComponent(props)
                         {details.entry}
                     </p>
                 </div>
-                <div className='Ent-Text'>
-                    <h1>
-                       Confidence Score:  {results? results.entities[0].confidence: "no resulrs"}
-                    </h1>
-                </div>
+                {results? <div className='Ent-Text white-bg'>
+                    <div className='confidence-div'>
+                    <ResponsivePie
+                        data={[{"id": "confidence",
+                        "label": "confidence",
+                        "value": `${results.entities[0].confidence*100}`,
+                        "color": "hsl(225,72.7%,56.9%)"},
+                        {
+                        "label": "null",
+                        "value": `${Math.round(100-results.entities[0].confidence*100)}`,
+                        "color": "hsl(21, 70%, 50%)"}]}
+                        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                        startAngle={-89}
+                        endAngle={90}
+                        innerRadius={0.8}
+                        activeOuterRadiusOffset={8}
+                        borderWidth={1}
+                        borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
+                        enableArcLinkLabels={false}
+                        arcLinkLabelsSkipAngle={10}
+                        arcLinkLabelsTextColor="#333333"
+                        arcLinkLabelsThickness={0}
+                        arcLinkLabelsColor={{ theme: 'color' }}
+                        arcLabelsSkipAngle={10}
+                        arcLabelsTextColor={{ from: 'color', modifiers: [ [ 'brighter', 4 ] ] }}
+                        isInteractive= {true}
+                        colors={{datum: 'data.color'}}
+                        defs={[
+                            {
+                                id: 'dots',
+                                type: 'patternDots',
+                                background: 'inherit',
+                                color: 'rgba(255, 255, 255, 0.3)',
+                                size: 4,
+                                padding: 1,
+                                stagger: true
+                            },
+                            {
+                                id: 'lines',
+                                type: 'patternLines',
+                                background: 'inherit',
+                                color: 'rgba(255, 255, 255, 0.3)',
+                                rotation: -45,
+                                lineWidth: 6,
+                                spacing: 10
+                            }
+                        ]}
+                        fill={[]}
+                        legends={[]}
+                    />
+                    <h3 className='Ent-sub'>
+                        Confidence Indicator
+                    </h3>
+                    </div>
+                    <div className='confidence-div'>
+                    <ResponsivePie
+                        data={[
+                        {"id": "anger",
+                        "label": "anger",
+                        "value": `${(results.entities[0].emotion.anger).toPrecision(2)}`,
+                        "color": "hsl(0, 100%, 50%)"},
+                        {
+                        "id": "disgust",
+                        "label": "disgust",
+                        "value": `${(results.entities[0].emotion.disgust).toPrecision(2)}`,
+                        "color": "hsl(147, 50%, 47%)"},
+                        {
+                        "id": "fear",
+                        "label": "fear",
+                        "value": `${(results.entities[0].emotion.fear).toPrecision(2)}`,
+                        "color": "hsl(300, 76%, 72%)"},
+                        {
+                        "id": "joy",
+                        "label": "joy",
+                        "value": `${(results.entities[0].emotion.joy).toPrecision(2)}`,
+                        "color": "hsl(39, 100%, 50%)"},
+                        {
+                        "id": "sadness",
+                        "label": "sadness",
+                        "value": `${(results.entities[0].emotion.sadness).toPrecision(2)}`,
+                        "color": "hsl(0, 0%, 50%)"},
+                        ]}
+                        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                        startAngle={-89}
+                        endAngle={90}
+                        innerRadius={0.8}
+                        activeOuterRadiusOffset={8}
+                        borderWidth={1}
+                        borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
+                        enableArcLinkLabels={false}
+                        arcLinkLabelsSkipAngle={10}
+                        arcLinkLabelsTextColor="#333333"
+                        arcLinkLabelsThickness={0}
+                        arcLinkLabelsColor={{ theme: 'color' }}
+                        arcLabelsSkipAngle={10}
+                        arcLabelsTextColor={{ from: 'color', modifiers: [ [ 'darker', 4 ] ] }}
+                        isInteractive= {true}
+                        colors={{datum: 'data.color'}}
+                        defs={[
+                            {
+                                id: 'dots',
+                                type: 'patternDots',
+                                background: 'inherit',
+                                color: 'rgba(255, 255, 255, 0.3)',
+                                size: 4,
+                                padding: 1,
+                                stagger: true
+                            },
+                            {
+                                id: 'lines',
+                                type: 'patternLines',
+                                background: 'inherit',
+                                color: 'rgba(255, 255, 255, 0.3)',
+                                rotation: -45,
+                                lineWidth: 6,
+                                spacing: 10
+                            }
+                        ]}
+                        fill={[]}
+                        legends={[]}
+                    />
+                    <h3 className='Ent-sub'>
+                        Emotion Indicator
+                    </h3>
+                    </div>
+                </div>: <div>Loading</div>}
             </div>
         )
     }

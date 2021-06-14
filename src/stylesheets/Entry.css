@@ -5,7 +5,7 @@
 }
 .Ent-Text
 {
-    width: 45%;
+    width: 50%;
     height: 90vh;
     overflow-y: scroll;
     padding-top: 5%;
@@ -28,4 +28,23 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+.confidence-div
+{
+    height: 300px;
+    color: black;
+}
+.white-bg
+{
+    background-image: none;
+    background-color: rgb(255, 255, 255);
+    box-shadow: inset 0 0 50px rgb(86, 153, 255);
+}
+.Ent-sub
+{
+    padding-top: 0;
+    margin-top: -7%;
+    font-size: 1.5rem;
+    color: #5271ff;
+    text-align: center;
 }

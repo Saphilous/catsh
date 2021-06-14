@@ -24,3 +24,9 @@
     background-image: linear-gradient(to left, rgb(100, 255, 126), rgb(5, 151, 0));
 
 }
+
+.white-bg
+{
+    background-image: none;
+    background-color: none;
+}
