@@ -76,14 +76,18 @@ function Home()
           <div className = {formclass}>
             <form>
               <label className ="App-label">
-                Username:
+                Cookie Policy
               </label>
-              <input type = 'text' placeholder = 'Please Enter Your name'/> <br />
+              <br />
+              <a className='policy' href='https://www.cookiepolicygenerator.com/live.php?token=V5oyNZM58Q6dVTZONocKvIhhVjsTlITo' target='blank'>Cookie Policy</a>
+              <br />
               <label className ="App-label">
-                Password:
+                Privacy Policy
               </label>
-              <input type = 'password' placeholder = 'Enter your password' />
-              <button className = 'App-btn' id='loginbtn' onClick= {signinhandler}> Submit </button>
+              <br />
+              <a className='policy' href='https://www.cookiepolicygenerator.com/live.php?token=j4EzvkYWClcjPMDrsdgv6yKwLgSiCFNw' target='blank'>Privacy Policy</a>
+              <br />
+              <button className = 'App-btn' id='loginbtn' onClick= {signinhandler}> Login/Sign Up </button>
             </form>
           </div>
         </div>

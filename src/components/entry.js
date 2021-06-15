@@ -85,8 +85,14 @@ function EntryComponent(props)
                     <p className='Ent-p'>
                         {details.entry}
                     </p>
+                    <p className='Ent-p center black-txt'>
+                        ***** The End *****
+                    </p>
                 </div>
                 {results? results.entities[0]? <div className='Ent-Text white-bg'>
+                    <h1>
+                        Text Analysis
+                    </h1>
                     <div className='confidence-div'>
                         <ResponsivePie
                             data={[{"id": "confidence",
@@ -216,7 +222,7 @@ function EntryComponent(props)
                         : results.entities[0].sentiment.label === 'neutral'? <div className='Ent-sent-label neutral'></div>
                         : <div className='Ent-sent-label negative'> </div>}
                         <h3 className='Ent-sub'>
-                            Emotion Indicator
+                            Sentiment Indicator
                         </h3>
                     </div>
                     </div>: <div className='Ent-Txt-Ins white-bg'>Insufficient text to analyze</div>
