@@ -7,6 +7,7 @@
 .Dash-card
 {
     margin: 3%;
+    max-height: 50%;
 }
 .Dash-Card-Add
 {
@@ -15,6 +16,7 @@
     margin: 3%;
     background-image: linear-gradient(to bottom, rgb(255, 0, 132),rgb(190, 104, 185), rgb(0, 75, 224));
     transition: all 0.4s ease-in-out;
+    height: 425px;
 }
 .Dash-Card-Add:hover
 {
@@ -23,7 +25,7 @@
 }
 .Dash-Icon
 {
-    margin: 55% 40% 50% 40%;
+    margin: 45% 40% 50% 40%;
     font-size: 5rem !important;
     border-radius: 25%;
 }

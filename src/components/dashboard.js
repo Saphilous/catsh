@@ -89,7 +89,7 @@ function DashComponent(props)
                                 {res.title}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p" className = {classes.body}>
-                                {res.entry}
+                                {res.entry.length > 100? `${res.entry.slice(0, 100)}...`: res.entry}
                             </Typography>
                             </CardContent>
                         </CardActionArea>
