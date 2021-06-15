@@ -63,7 +63,14 @@ function DashComponent(props)
             var starsref = storageref.child(finalpath)
             starsref.getDownloadURL().then((url) => {
                 console.log(url)
-                document.getElementById(res.id).setAttribute("src", url)
+                try
+                {
+                    document.getElementById(res.id).setAttribute("src", url)
+                }
+                catch(err)
+                {
+                    console.log(err)
+                }
             })
             const clicked = () => {
                 history.push(`/dashboard/entry?uid=${userid}&eid=${res.id}`)
