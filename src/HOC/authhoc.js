@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from 'react'
+import React, {Component} from 'react'
 import AppID from 'ibmcloud-appid-js'
 import {Redirect} from 'react-router-dom'
 import { render } from '@testing-library/react'
