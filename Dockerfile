@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM node:14 as build-deps
-WORKDIR /home/saphilous/Project/catsh
+WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
-COPY . .
+COPY ./ /app/
 RUN npm run build
 
 ENV NODE_ENV production
