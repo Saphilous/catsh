@@ -3,7 +3,7 @@ FROM node:14 as build-deps
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
-COPY ./ /app/
+COPY . .
 RUN npm run build
 
 ENV NODE_ENV production
