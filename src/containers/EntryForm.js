@@ -9,6 +9,8 @@ import firebase from "firebase/app";
 import "firebase/storage";
 import '../stylesheets/EntryForm.css'
 
+const cryptoJs = require("crypto-js")
+
 
 const classes = makeStyles((theme) => ({
     root: {
@@ -19,6 +21,11 @@ const classes = makeStyles((theme) => ({
         },
     })
 );
+
+const encryptwithAES = (text) => {
+    const passphrase = sessionStorage.getItem("uid")
+    return cryptoJs.AES.encrypt(text, passphrase).toString()
+}
 
 function EntryForm(props)
 {
@@ -53,7 +60,9 @@ function EntryForm(props)
         var metadata = {
             name: filename
         }
-        const newentry = {...formvals, imgname: filename, docid: `${urlparams.get('uid')}`}
+        const newentryvals = {...formvals}
+        newentryvals.entry = encryptwithAES(newentryvals.entry)
+        const newentry = {...newentryvals, imgname: filename, docid: `${urlparams.get('uid')}`}
         console.log(newentry)
         storyref.put(inpfile, metadata).then((snapshot) => {
             console.log('Image is uploaded succesfully!');

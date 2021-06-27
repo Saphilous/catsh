@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
 import axios from 'axios';
 
+const cryptoJs = require("crypto-js")
 
 const Div = styled.div `
 background-image: url(${props => props.url});
@@ -21,6 +22,13 @@ const instance = axios.create({
     baseURL: "https://18d20caa.us-south.apigw.appdomain.cloud/catsh-text-analyze"
 })
 
+const decryptaes = (text) => {
+    const passphrase = sessionStorage.getItem("uid")
+    const bytes = cryptoJs.AES.decrypt(text, passphrase)
+    const originialtext = bytes.toString(cryptoJs.enc.Utf8)
+    return originialtext
+}
+
 function EntryComponent(props)
 {
     const [imgurl, setimgurl] = useState()
@@ -29,7 +37,7 @@ function EntryComponent(props)
         if(props.entry)
         {
             const details = props.entry
-            const analtexts = details.entry
+            const analtexts = decryptaes(details.entry)
             var analyzsisresults
                 await instance.get(`/analyzetext?analtexts=${analtexts}`, {"analtexts": analtexts}).then(res => {
                     analyzsisresults = res.data.result
@@ -83,7 +91,7 @@ function EntryComponent(props)
                         {/* Just a placeholder for the image*/}
                     </Div>
                     <p className='Ent-p'>
-                        {details.entry}
+                        {decryptaes(details.entry)}
                     </p>
                     <p className='Ent-p center black-txt'>
                         ***** The End *****

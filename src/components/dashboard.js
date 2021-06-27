@@ -12,6 +12,14 @@ import Typography from '@material-ui/core/Typography';
 import firebase from "firebase/app";
 import "firebase/storage";
 
+const cryptoJs = require("crypto-js")
+const decryptaes = (text) => {
+    const passphrase = sessionStorage.getItem("uid")
+    const bytes = cryptoJs.AES.decrypt(text, passphrase)
+    const originialtext = bytes.toString(cryptoJs.enc.Utf8)
+    return originialtext
+}
+
 const useStyles = makeStyles({
 
     root: {
@@ -75,6 +83,8 @@ function DashComponent(props)
             const clicked = () => {
                 history.push(`/dashboard/entry?uid=${userid}&eid=${res.id}`)
             }
+            console.log(res.entry)
+            const texttoshow = decryptaes(res.entry)
             return(
                 <div className="Dash-card">
                    <Card className={classes.root}>
@@ -96,7 +106,7 @@ function DashComponent(props)
                                 {res.title}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p" className = {classes.body}>
-                                {res.entry.length > 100? `${res.entry.slice(0, 100)}...`: res.entry}
+                                {texttoshow.length > 100? `${texttoshow.slice(0, 100)}...`: texttoshow}
                             </Typography>
                             </CardContent>
                         </CardActionArea>
